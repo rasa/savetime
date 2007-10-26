@@ -18,7 +18,7 @@ General Public License for more details.
 #define VER_INTERNAL_NAME 		"savetime"
 #define	VER_FILE_DESCRIPTION	"Save/restore system time"
 #define VER_MAJOR				1
-#define VER_MINOR				0
-#define VER_STRING2				"1.0"
+#define VER_MINOR				1
+#define VER_STRING2				"1.1"
 
 #include "ver_defaults.h"
