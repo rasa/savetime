@@ -1,0 +1,5 @@
+savetime changelog
+
+Version 1.0 - 19 Jul 06:
+
+	Initial release
