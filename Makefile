@@ -14,7 +14,8 @@
 
 VER?=$(shell perl -n -e '/define\s+VER_STRING2\s+"(.*)"/ && print $$1' version.h)
 APP?=$(shell perl -n -e '/define\s+VER_INTERNAL_NAME\s+"(.*)"/ && print $$1' version.h)
-MSVC_DIR?=/cygdrive/c/PROGRA~1/MICROS~4/VC98
+VC98?=$(PROGRAMFILES)\\Microsoft Visual Studio\\VC98
+MSVC_DIR?=$(shell cygpath -u `cygpath -ds "$(VC98)"`)
 CYGENV=MAKEFLAGS="" PATH=$(MSVC_DIR)/bin:$$PATH
 NSI?=$(shell ls *.nsi)
 PREFIX?=$(APP)-$(VER)-win32

@@ -2,7 +2,7 @@
 
 $Id$
 
-Copyright (c) 2005-2006 Ross Smith II (http://smithii.com). All rights reserved.
+Copyright (c) 2005-2008 Ross Smith II (http://smithii.com). All rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of version 2 of the GNU General Public License
@@ -120,31 +120,37 @@ internationalize
 
 int tray_icon;
 
-#define NTP_HOST TEXT("us.pool.ntp.org")
+#define NTP_HOST TEXT("utcnist.colorado.edu")
 
 /*
 
 supports port 37:
 
-time-a.nist.gov  	129.6.15.28  	NIST, Gaithersburg, Maryland
-time-b.nist.gov 	129.6.15.29 	NIST, Gaithersburg, Maryland
-time-a.timefreq.bldrdoc.gov 	132.163.4.101 	NIST, Boulder, Colorado
-time-b.timefreq.bldrdoc.gov 	132.163.4.102 	NIST, Boulder, Colorado
-time-c.timefreq.bldrdoc.gov 	132.163.4.103 	NIST, Boulder, Colorado
-utcnist.colorado.edu 	128.138.140.44 	University of Colorado, Boulder
-nist1.symmetricom.com 	69.25.96.13 	Symmetricom, San Jose, California
-nist1-dc.WiTime.net 	206.246.118.250 	WiTime, Virginia
-nist1-ny.WiTime.net 	208.184.49.9 	WiTime, New York City
-nist1-sj.WiTime.net 	64.125.78.85 	WiTime, San Jose, California
-nist1.aol-ca.symmetricom.com 	207.200.81.113 	Symmetricom, AOL facility, Sunnyvale, California
-nist1.aol-va.symmetricom.com 	64.236.96.53 	Symmetricom, AOL facility, Virginia
-nist1.columbiacountyga.gov 	68.216.79.113 	Columbia County, Georgia
-nist.expertsmi.com 	71.13.91.122 	Monroe, Michigan
+nist1-ny.WiTime.net	64.90.182.55	New York City, NY	Recommended for new users
+time-a.nist.gov	129.6.15.28	NIST, Gaithersburg, Maryland	Ok
+time-b.nist.gov	129.6.15.29	NIST, Gaithersburg, Maryland	Ok
+nist1-dc.WiTime.net	206.246.118.250	Alexandria, Virginia	Recommended for new users
+nist1.aol-va.symmetricom.com	64.236.96.53	Reston, Virginia	Recommended for new users
+nist1.columbiacountyga.gov	68.216.79.113	Columbia County, Georgia	Recommended for new users
+nist.expertsmi.com	99.150.184.201	Monroe, Michigan	Recommended for new users
+nist.netservicesgroup.com	64.113.32.5	Southfield, Michigan	Recommended for new users
+time-a.timefreq.bldrdoc.gov	132.163.4.101	NIST, Boulder, Colorado	Ok
+time-b.timefreq.bldrdoc.gov	132.163.4.102	NIST, Boulder, Colorado	Very busy
+time-c.timefreq.bldrdoc.gov	132.163.4.103	NIST, Boulder, Colorado	Ok 
+utcnist.colorado.edu	128.138.140.44	University of Colorado, Boulder	ok
+utcnist2.colorado.edu	128.138.188.172	University of Colorado, Boulder	Recommended for new users
+nist1.aol-ca.symmetricom.com	207.200.81.113	Mountain View, California	Recommended for new users
+nist1.symmetricom.com	69.25.96.13	San Jose, California	Recommended for new users
+nist1-sj.WiTime.net	64.125.78.85	San Jose, California	Recommended for new users
+
+supports port 37, but returns all zeros:
+
+nist1-la.WiTime.net	64.147.116.229	Los Angeles, California	Recommended for new users
 
 does not support port 37:
 
-time.nist.gov 	192.43.244.18 	NCAR, Boulder, Colorado
-time-nw.nist.gov 	131.107.1.10 	Microsoft, Redmond, Washington
+time.nist.gov	192.43.244.18	NCAR, Boulder, Colorado	Very busy
+time-nw.nist.gov	131.107.13.100	Microsoft, Redmond, Washington	ok
 
 */
 

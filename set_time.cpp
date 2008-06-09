@@ -2,7 +2,7 @@
 
 $Id$
 
-Copyright (c) 2005-2006 Ross Smith II (http://smithii.com). All rights reserved.
+Copyright (c) 2005-2008 Ross Smith II (http://smithii.com). All rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of version 2 of the GNU General Public License 
