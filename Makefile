@@ -27,7 +27,7 @@ ZIP?=zip
 ZIP_OPTS?=-9jquX
 CWD=$(shell pwd)
 APP_FILES=${EXE} changelog.txt COPYING readme.txt 
-SRC_FILES=$(APP_FILES) Makefile $(shell ls *.cpp *.c *.h *.hpp *.ico *.inl *.rc *.dsp *.dsw *.mak *.dep 2>nul)
+SRC_FILES=$(APP_FILES) Makefile $(shell ls *.cpp *.c *.h *.hpp *.ico *.inl *.rc *.dsp *.dsw *.mak *.dep 2>/dev/null)
 
 .PHONY:	dist
 dist:	all $(APP_ZIP) $(SRC_ZIP)

@@ -136,7 +136,7 @@ nist.expertsmi.com	99.150.184.201	Monroe, Michigan	Recommended for new users
 nist.netservicesgroup.com	64.113.32.5	Southfield, Michigan	Recommended for new users
 time-a.timefreq.bldrdoc.gov	132.163.4.101	NIST, Boulder, Colorado	Ok
 time-b.timefreq.bldrdoc.gov	132.163.4.102	NIST, Boulder, Colorado	Very busy
-time-c.timefreq.bldrdoc.gov	132.163.4.103	NIST, Boulder, Colorado	Ok 
+time-c.timefreq.bldrdoc.gov	132.163.4.103	NIST, Boulder, Colorado	Ok
 utcnist.colorado.edu	128.138.140.44	University of Colorado, Boulder	ok
 utcnist2.colorado.edu	128.138.188.172	University of Colorado, Boulder	Recommended for new users
 nist1.aol-ca.symmetricom.com	207.200.81.113	Mountain View, California	Recommended for new users
@@ -158,41 +158,7 @@ TCHAR time_host[64] = NTP_HOST;
 
 BOOL no_real_time = FALSE;
 
-char* short_options = "h:npusrtwfav?";
-
-struct option long_options[] = {
-  {"host",				1, 0, 'h'},
-  {"nontp",				1, 0, 'n'},
-  {"pause",				0, 0, 'p'},
-  {"unpause",			0, 0, 'u'},
-  {"save",				0, 0, 's'},
-  {"restore",			0, 0, 'r'},
-  {"reset",				0, 0, 't'},
-  {"shutdown",			0, 0, 'w'},
-  {"forceshutdown",		0, 0, 'f'},
-  {"about",				0, 0, 'a'},
-  {"version",			0, 0, 'v'},
-  {"help",				0, 0, '?'},
-  {NULL,				0, 0, 0}
-};
-
-enum {
-	MY_WM_TRAY			= WM_USER
-};
-
-enum {
-	MENU_EXIT,
-	MENU_PAUSE_TIME,
-	MENU_UNPAUSE_TIME,
-	MENU_SAVE_TIME,
-	MENU_RESTORE_TIME,
-	MENU_RESET_TIME,
-	MENU_UPDATE_REAL_TIME,
-	MENU_SHUTDOWN,
-	MENU_FORCE_SHUTDOWN,
-	MENU_HELP,
-	MENU_ABOUT
-};
+BOOL restore_time_on_startup = TRUE;
 
 #ifndef SHTDN_REASON_MAJOR_OPERATINGSYSTEM
 #define SHTDN_REASON_MAJOR_OPERATINGSYSTEM(0x00020000)
@@ -210,6 +176,75 @@ static HINSTANCE	app_instance;
 static HWND			app_window;
 static HMENU		popup_menu;
 static SYSTEMTIME	lpPauseTime;
+
+enum {
+	MY_WM_TRAY			= WM_USER
+};
+
+char* short_options = "afh:nprRstuvw?";
+
+/*check	Save on Shut&down
+check	Rest&ore Time on Restart
+check	Paus&e Time on Restart
+*/
+
+struct option long_options[] = {
+  {"about",				0, 0, 'a'},
+  {"forceshutdown",		0, 0, 'f'},
+  {"help",				0, 0, '?'},
+  {"host",				1, 0, 'h'},
+  {"nontp",				1, 0, 'n'},
+  {"pause",				0, 0, 'p'},
+  {"reset",				0, 0, 't'},
+  {"restore",			0, 0, 'r'},
+  {"norestore",			0, 0, 'R'},
+  {"save",				0, 0, 's'},
+  {"shutdown",			0, 0, 'w'},
+  {"unpause",			0, 0, 'u'},
+  {"version",			0, 0, 'v'},
+  {NULL,				0, 0, 0}
+};
+
+enum {
+	MENU_EXIT,
+	MENU_PAUSE_TIME,
+	MENU_UNPAUSE_TIME,
+	MENU_SAVE_TIME,
+	MENU_RESTORE_TIME,
+	MENU_RESET_TIME,
+	MENU_UPDATE_REAL_TIME,
+	MENU_SHUTDOWN,
+	MENU_FORCE_SHUTDOWN,
+	MENU_HELP,
+	MENU_ABOUT
+};
+
+static void info(const char *format, ...);
+
+int usage() {
+//	printf("%s\n", TEXT("(") __DATE__ TEXT(" ") __TIME__ TEXT(")\n\n") COPYRIGHT);
+
+	info(TEXT(
+	"Usage: savetime [options]\n"
+	"Options:\n\n"
+	"           -h\t| --host hostname\tNTP host(default is "
+	NTP_HOST
+	")\n"
+	"           -n\t| --nontp        \tDon't use NTP to get real time\n"
+	"           -p\t| --pause        \tPause time on startup\n"
+	"           -u\t| --unpause      \tUnpause time on startup\n"
+	"           -s\t| --save         \tSave time on startup\n"
+	"           -r\t| --restore      \tRestore saved time on startup\n"
+	"           -R\t| --norestore    \tDon't restore saved time on startup\n"
+	"           -t\t| --reset        \tReset time to real time on startup\n"
+	"           -w\t| --shutdown     \tShutdown Windows\n"
+	"           -f\t| --forceshutdown\tForce shutdown Windows\n"
+	"           -a\t| --about        \tDisplay the about box\n"
+	"           -v\t| --version      \tDisplay the program version\n"
+	"           -?\t| --help         \tDisplay this help dialog\n"
+	));
+	return 0;
+}
 
 static void info(const char *format, ...) {
 	char buf[4096];
@@ -825,30 +860,6 @@ static void show_about_box()  {
 	);
 }
 
-int usage() {
-//	printf("%s\n", TEXT("(") __DATE__ TEXT(" ") __TIME__ TEXT(")\n\n") COPYRIGHT);
-
-	info(TEXT(
-	"Usage: savetime [options]\n"
-	"Options:\n\n"
-	"           -h\t| --host hostname\tNTP host(default is "
-	NTP_HOST
-	")\n"
-	"           -n\t| --nontp        \tDon't use NTP to get real time\n"
-	"           -p\t| --pause        \tPause time on startup\n"
-	"           -u\t| --unpause      \tUnpause time on startup\n"
-	"           -s\t| --save         \tSave time on startup\n"
-	"           -r\t| --restore      \tRestore saved time on startup\n"
-	"           -t\t| --reset        \tReset time to real time on startup\n"
-	"           -w\t| --shutdown     \tShutdown Windows\n"
-	"           -f\t| --forceshutdown\tForce shutdown Windows\n"
-	"           -a\t| --about        \tDisplay the about box\n"
-	"           -v\t| --version      \tDisplay the program version\n"
-	"           -?\t| --help         \tDisplay this help dialog\n"
-	));
-	return 0;
-}
-
 static int handle_command(int id, int event) {
 	D((_T("handle_command: id=%d, event=%d"), id, event));
 
@@ -951,6 +962,7 @@ int process_options(int argc, char **argv) {
 				break;
 			case 'n':	// nontp
 				no_real_time = TRUE;
+				break;
 			case 'p': 	// pause
 				pause_time();
 				break;
@@ -961,7 +973,10 @@ int process_options(int argc, char **argv) {
 				save_local_time();
 				break;
 			case 'r':	// restore
-				restore_time();
+				restore_time_on_startup = true;
+				break;
+			case 'R':	// norestore
+				restore_time_on_startup = false;
 				break;
 			case 't':	// reset
 				reset_time();
@@ -989,6 +1004,8 @@ int process_options(int argc, char **argv) {
 	}
 	return 0;
 }
+
+#define TOKEN_SEPARATORS " \t"
 
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE prev_instance,
                     LPSTR cmd_line, int cmd_show) {
@@ -1025,7 +1042,41 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE prev_instance,
 
 	DWORD dw = GetEnvironmentVariable("SAVETIME", savetime, sizeof(savetime));
 
+//strcpy(savetime, "-n -p");
+
+	unsigned int tokenc = 1;
+	TCHAR *token = strtok(savetime, TOKEN_SEPARATORS);
+
+	while (token) {
+		++tokenc;
+		token = strtok(NULL, TOKEN_SEPARATORS);
+	}
+	
+	TCHAR **tokenv = (TCHAR **) malloc((tokenc + 1) * sizeof(TCHAR *));
+
+	for (unsigned int i = 0; i <= tokenc; ++i) {
+		tokenv[i] = NULL;
+	}
+
+	dw = GetEnvironmentVariable("SAVETIME", savetime, sizeof(savetime));
+
+//strcpy(savetime, "-n -p");
+
+	tokenc = 1;
+	token = strtok(savetime, TOKEN_SEPARATORS);
+
+	while (token) {
+		tokenv[tokenc++] = token;
+		token = strtok(NULL, TOKEN_SEPARATORS);
+	}
+
+	process_options(tokenc, tokenv);
+
 	process_options(__argc, __argv);
+
+	if (restore_time_on_startup) {
+		restore_time();
+	}
 
 	// fire every 990 milliseconds
 	// \q will this work on all systems?
