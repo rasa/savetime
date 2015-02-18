@@ -73,6 +73,10 @@ internationalize
 
 */
 
+#ifdef _MSC_VER
+#pragma warning(disable:4996)
+#endif
+
 #include <tchar.h>
 #include <windows.h>
 #include <stdio.h>		// _vsnprintf
@@ -281,19 +285,19 @@ static void fatal_error(const char *format, ...) {
 	ExitProcess(1);
 }
 
-static char *last_error(int errno) {
+static char *last_error(int err) {
 	static char windows_error_msg[2048];
 	if (FormatMessage(
 		FORMAT_MESSAGE_FROM_SYSTEM |
 		FORMAT_MESSAGE_IGNORE_INSERTS,
 		NULL,
-		errno,
+		err,
 		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
 		(LPTSTR) &windows_error_msg,
 		sizeof(windows_error_msg),
 		NULL
 		) == 0) {
-		_snprintf(windows_error_msg, sizeof(windows_error_msg), TEXT("Unknown Windows error %d"), errno);
+		_snprintf(windows_error_msg, sizeof(windows_error_msg), TEXT("Unknown Windows error %d"), err);
 	}
 	return windows_error_msg;
 }
@@ -316,6 +320,7 @@ static void display_last_error(const char *format, ...) {
 		strcpy(msg, buf);
 		strcat(msg, TEXT(": "));
 	}
+
 	strcat(msg, last_error(err));
 
 	D((_T("display_last_error: msg=%s"), msg));

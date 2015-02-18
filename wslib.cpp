@@ -15,6 +15,10 @@ General Public License for more details.
 
 */
 
+#ifdef _MSC_VER
+#pragma warning(disable:4996)
+#endif
+
 #include "config.h"
 #include <winsock2.h>  /* include *before* windows */
 #include <windows.h>
