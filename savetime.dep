@@ -1,23 +1,46 @@
 # Microsoft Developer Studio Generated Dependency File, included by savetime.mak
 
 .\savetime.cpp : \
+	{$(INCLUDE)}"basetsd.h"\
+	{$(INCLUDE)}"guiddef.h"\
+	{$(INCLUDE)}"propidl.h"\
+	{$(INCLUDE)}"reason.h"\
+	{$(INCLUDE)}"specstrings.h"\
+	{$(INCLUDE)}"stralign.h"\
+	{$(INCLUDE)}"tvout.h"\
+	{$(INCLUDE)}"windows.h"\
+	{$(INCLUDE)}"winefs.h"\
+	{$(INCLUDE)}"debug.h"\
+	{$(INCLUDE)}"getopt.h"\
+	{$(INCLUDE)}"ver_defaults.h"\
 	".\config.h"\
 	".\set_time.h"\
 	".\version.h"\
 	".\wslib.h"\
-	{$(INCLUDE)}"debug.h"\
-	{$(INCLUDE)}"getopt.h"\
-	{$(INCLUDE)}"ver_defaults.h"\
 	
 
 .\set_time.cpp : \
+	{$(INCLUDE)}"basetsd.h"\
+	{$(INCLUDE)}"guiddef.h"\
+	{$(INCLUDE)}"reason.h"\
+	{$(INCLUDE)}"specstrings.h"\
+	{$(INCLUDE)}"stralign.h"\
+	{$(INCLUDE)}"tvout.h"\
+	{$(INCLUDE)}"windows.h"\
+	{$(INCLUDE)}"debug.h"\
 	".\config.h"\
 	".\set_time.h"\
 	".\wslib.h"\
-	{$(INCLUDE)}"debug.h"\
 	
 
 .\wslib.cpp : \
+	{$(INCLUDE)}"basetsd.h"\
+	{$(INCLUDE)}"guiddef.h"\
+	{$(INCLUDE)}"reason.h"\
+	{$(INCLUDE)}"specstrings.h"\
+	{$(INCLUDE)}"stralign.h"\
+	{$(INCLUDE)}"tvout.h"\
+	{$(INCLUDE)}"windows.h"\
 	".\config.h"\
 	".\wslib.h"\
 	
@@ -27,6 +50,4 @@
 	".\clock_pink.ico"\
 	".\clock_red.ico"\
 	".\savetime.ico"\
-	".\version.h"\
-	{$(INCLUDE)}"ver_defaults.h"\
 	

@@ -161,15 +161,15 @@ BOOL no_real_time = FALSE;
 BOOL restore_time_on_startup = TRUE;
 
 #ifndef SHTDN_REASON_MAJOR_OPERATINGSYSTEM
-#define SHTDN_REASON_MAJOR_OPERATINGSYSTEM(0x00020000)
+#define SHTDN_REASON_MAJOR_OPERATINGSYSTEM (0x00020000)
 #endif
 
 #ifndef SHTDN_REASON_MINOR_OTHER
-#define SHTDN_REASON_MINOR_OTHER(0x00000000)
+#define SHTDN_REASON_MINOR_OTHER (0x00000000)
 #endif
 
 #ifndef SHTDN_REASON_FLAG_PLANNED
-#define SHTDN_REASON_FLAG_PLANNED(0x80000000)
+#define SHTDN_REASON_FLAG_PLANNED (0x80000000)
 #endif
 
 static HINSTANCE	app_instance;
@@ -322,6 +322,13 @@ static void display_last_error(const char *format, ...) {
 
 	MessageBox(NULL, msg, APPNAMEVERSION, MB_OK | MB_ICONERROR);
 }
+
+#ifndef MIIM_STRING
+#define MIIM_STRING      0x00000040
+#endif
+#ifndef MIIM_FTYPE
+#define MIIM_FTYPE       0x00000100
+#endif
 
 static void insert_menu_item(HMENU menu, int id, char *caption) {
 	D((_T("insert_menu_item: id=%d, caption=%s"), id, caption));

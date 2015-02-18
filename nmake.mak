@@ -1,10 +1,10 @@
 all:
-	$(CYGENV) nmake /f savetime.mak CFG="savetime - Win32 Release"	all
-	$(CYGENV) nmake /f savetime.mak CFG="savetime - Win32 Debug"	all
+	$(MAKE)/f savetime.mak CFG="savetime - Win32 Release"	all
+	$(MAKE)/f savetime.mak CFG="savetime - Win32 Debug"	all
 
 clean:
-	$(CYGENV) nmake /f savetime.mak CFG="savetime - Win32 Release"	clean
-	$(CYGENV) nmake /f savetime.mak CFG="savetime - Win32 Debug"	clean
+	$(MAKE)/f savetime.mak CFG="savetime - Win32 Release"	clean
+	$(MAKE)/f savetime.mak CFG="savetime - Win32 Debug"	clean
 
 realclean: clean
 	-cmd /c del /s *.bak

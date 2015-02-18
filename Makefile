@@ -14,20 +14,18 @@
 
 VER?=$(shell perl -n -e '/define\s+VER_STRING2\s+"(.*)"/ && print $$1' version.h)
 APP?=$(shell perl -n -e '/define\s+VER_INTERNAL_NAME\s+"(.*)"/ && print $$1' version.h)
-VC98?=$(PROGRAMFILES)\\Microsoft Visual Studio\\VC98
-MSVC_DIR?=$(shell cygpath -u `cygpath -ds "$(VC98)"`)
-CYGENV=MAKEFLAGS="" PATH=$(MSVC_DIR)/bin:$$PATH
-NSI?=$(shell ls *.nsi)
-PREFIX?=$(APP)-$(VER)-win32
-EXE?=$(PREFIX).exe
-NSHS?=$(shell ls ../*.nsh)
+APP_FILES=Release/$(APP).exe changelog.txt COPYING readme.txt
+SRC_FILES=$(APP_FILES) $(shell ls Makefile *.cpp *.dep *.dsp *.dsw *.h *.ico *.mak *.rc 2>/dev/null)
+
 APP_ZIP?=$(APP)-$(VER)-win32.zip
 SRC_ZIP?=$(APP)-$(VER)-win32-src.zip
 ZIP?=zip
 ZIP_OPTS?=-9jquX
-CWD=$(shell pwd)
-APP_FILES=${EXE} changelog.txt COPYING readme.txt 
-SRC_FILES=$(APP_FILES) Makefile $(shell ls *.cpp *.c *.h *.hpp *.ico *.inl *.rc *.dsp *.dsw *.mak *.dep 2>/dev/null)
+
+NSI?=$(shell ls *.nsi)
+PREFIX?=$(APP)-$(VER)-win32
+EXE?=$(PREFIX).exe
+NSHS?=$(shell ls ../*.nsh)
 
 .PHONY:	dist
 dist:	all $(APP_ZIP) $(SRC_ZIP)
