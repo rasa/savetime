@@ -9,12 +9,14 @@
 #endif
 
 #ifdef _MSC_VER
-# ifndef vsnprintf
-#  define vsnprintf _vsnprintf
+//#if _MSC_VER < 1500
+# ifndef my_vsnprintf
+#  define my_vsnprintf _vsnprintf
 # endif
-# ifndef snprintf
-#  define snprintf  _snprintf
+# ifndef my_snprintf
+#  define my_snprintf  _snprintf
 # endif
+//#endif // _MSC_VER < 1500
 #endif // _MSC_VER
 
 #endif /* __CONFIG_H */

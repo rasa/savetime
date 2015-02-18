@@ -64,7 +64,9 @@ BOOL get_filetime(char *host, FILETIME *ft, char *errmsg) {
 			static char buf[2048];
 
 			errmsg = wsa_strerror(WSAGetLastError());
-			snprintf(buf, sizeof(buf), "Failed to resolve '%s': %s", host, rv);
+//vsnprintf(_Out_cap_(_MaxCount) char * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);
+
+			my_snprintf(buf, sizeof(buf), "Failed to resolve '%s': %s", host, rv);
 			errmsg = buf;
 			break;
 		}

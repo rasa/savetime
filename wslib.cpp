@@ -33,7 +33,7 @@ char *windows_strerror (const DWORD err) {
 		(LPTSTR) &buf, sizeof (buf), NULL);
 
 	if (ret == 0) {
-		snprintf (buf, sizeof(buf), "Unknown Windows error %d", err);
+		my_snprintf (buf, sizeof(buf), "Unknown Windows error %d", err);
 	}
 
 	return buf;
