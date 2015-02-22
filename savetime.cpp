@@ -998,6 +998,8 @@ int process_options(int argc, char **argv) {
 				usage();
 				exit(0);
 				break;
+			case ':':
+				// fallthrough
 			default:
 				usage();
 				exit(1);
