@@ -1,5 +1,6 @@
-## 1.5 (unreleased)
+## 1.5 (07-Apr-16)
 
+ * Fix getopt_long() issue
  * Update license.txt to MIT license
 
 ## 1.4 (20-May-2015)

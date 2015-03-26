@@ -1,4 +1,4 @@
-// Copyright (c) 2005-2015 Ross Smith II. See Mit LICENSE in /LICENSE
+// Copyright (c) 2005-2016 Ross Smith II. See Mit LICENSE in /LICENSE
 
 #ifdef _MSC_VER
 #pragma warning(disable:4996)
@@ -51,7 +51,7 @@ BOOL get_filetime(char *host, FILETIME *ft, char *errmsg) {
 			errmsg = wsa_strerror(WSAGetLastError());
 //vsnprintf(_Out_cap_(_MaxCount) char * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);
 
-			my_snprintf(buf, sizeof(buf), "Failed to resolve '%s': %s", host, rv);
+			my_snprintf(buf, sizeof(buf), "Failed to resolve '%s': %d", host, rv);
 			errmsg = buf;
 			break;
 		}

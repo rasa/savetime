@@ -1,4 +1,4 @@
-// Copyright (c) 2005-2015 Ross Smith II. See Mit LICENSE in /LICENSE
+// Copyright (c) 2005-2016 Ross Smith II. See Mit LICENSE in /LICENSE
 
 /*
 
@@ -947,12 +947,10 @@ int process_options(int argc, char **argv) {
 	int option_index = 0;
 	char* arg;
 
+	opterr = 0;
+
 	while(true) {
 		int c = getopt_long(argc, argv, short_options, long_options, &option_index);
-		if (opterr) {
-			usage();
-			exit(1);
-		}
 		if (c == -1) {
 			break;
 		}
