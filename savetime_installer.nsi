@@ -7,8 +7,8 @@
 !ifndef PRODUCT_VERSION 
 !define PRODUCT_VERSION "1.0"
 !endif
-!define PRODUCT_PUBLISHER "Ross Smith"
-!define PRODUCT_WEB_SITE "http://smithii.com/savetime/"
+!define PRODUCT_PUBLISHER "Ross Smith II"
+!define PRODUCT_WEB_SITE "http://github.com/rasa/savetime/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\savetime.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
@@ -53,7 +53,7 @@ var STARTMENU_FOLDER
 ; MUI end ------
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}-win32.exe"
+OutFile "${PRODUCT_OUTFILE}"
 InstallDir "$PROGRAMFILES\Savetime"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
