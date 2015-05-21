@@ -1,3 +1,8 @@
+## 1.4 (20-May-2015)
+
+  * Remove UPX compression
+  * Update Makefile
+
 ## 1.3 (27-Mar-2015)
 
   * Executables signed with StartSSL code signing certificate
