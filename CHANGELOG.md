@@ -1,3 +1,7 @@
+## 1.5 (unreleased)
+
+ * Update license.txt to MIT license
+
 ## 1.4 (20-May-2015)
 
   * Remove UPX compression
